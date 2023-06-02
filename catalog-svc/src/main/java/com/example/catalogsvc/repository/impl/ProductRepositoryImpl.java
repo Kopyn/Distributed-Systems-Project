@@ -4,7 +4,6 @@ import com.example.catalogsvc.model.Product;
 import com.example.catalogsvc.repository.ProductRepository;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +29,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public String test() {
-        return rows.toString();
+        return Integer.toString(rows.size());
     }
 }
