@@ -25,15 +25,17 @@ public class Product {
     private Double salePrice;
     private String category;
     private String categoryTree;
-    private Double averageProductRating;
+    private String averageProductRating;
     private String productUrl;
     private List<String> productImageUrls;
     private String brand;
     private int totalNumberReviews;
     private List<String> reviews;
 
+    public Product(){};
+
     public Product(String uniqId, String sku, String title, String description, Double distPrice,
-                   Double salePrice, String category, String categoryTree, Double averageProductRating,
+                   Double salePrice, String category, String categoryTree, String averageProductRating,
                    String productUrl, List<String> productImageUrls, String brand, int totalNumberReviews,
                    List<String> reviews) {
         this.uniqId = uniqId;
@@ -116,11 +118,11 @@ public class Product {
         this.categoryTree = categoryTree;
     }
 
-    public Double getAverageProductRating() {
+    public String getAverageProductRating() {
         return averageProductRating;
     }
 
-    public void setAverageProductRating(Double averageProductRating) {
+    public void setAverageProductRating(String averageProductRating) {
         this.averageProductRating = averageProductRating;
     }
 
@@ -162,5 +164,25 @@ public class Product {
 
     public void setReviews(List<String> reviews) {
         this.reviews = reviews;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "uniqId='" + uniqId + '\'' +
+                ", sku='" + sku + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", distPrice=" + distPrice +
+                ", salePrice=" + salePrice +
+                ", category='" + category + '\'' +
+                ", categoryTree='" + categoryTree + '\'' +
+                ", averageProductRating=" + averageProductRating +
+                ", productUrl='" + productUrl + '\'' +
+                ", productImageUrls=" + productImageUrls +
+                ", brand='" + brand + '\'' +
+                ", totalNumberReviews=" + totalNumberReviews +
+                ", reviews=" + reviews +
+                '}';
     }
 }
