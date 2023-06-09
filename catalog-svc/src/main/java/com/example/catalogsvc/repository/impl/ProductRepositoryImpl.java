@@ -13,14 +13,14 @@ import java.util.regex.Pattern;
 
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private final ArrayList<Product> rows = new ArrayList<>();
+    private final ArrayList<Product> products = new ArrayList<>();
 
     public ProductRepositoryImpl(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {
-                rows.add(readProductFromLine(line.split("\t")));
+                products.add(readProductFromLine(line.split("\t")));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,17 +43,28 @@ public class ProductRepositoryImpl implements ProductRepository {
         resultProduct.setSku(preparedColumnValues[1]);
         resultProduct.setTitle(preparedColumnValues[2]);
         resultProduct.setDescription(preparedColumnValues[3]);
-        resultProduct.setDistPrice(preparedColumnValues[4].equals("") || !isNumeric(preparedColumnValues[4]) || preparedColumnValues[4] == null? 0 : Double.valueOf(preparedColumnValues[4]));
-        resultProduct.setSalePrice(preparedColumnValues[5].equals("") || !isNumeric(preparedColumnValues[5]) || preparedColumnValues[5] == null? 0 : Double.valueOf(preparedColumnValues[5]));
+        resultProduct.setDistPrice(preparedColumnValues[4].equals("") || !isNumeric(preparedColumnValues[4]) ? 0 : Double.parseDouble(preparedColumnValues[4]));
+        resultProduct.setSalePrice(preparedColumnValues[5].equals("") || !isNumeric(preparedColumnValues[5]) ? 0 : Double.parseDouble(preparedColumnValues[5]));
         resultProduct.setCategory(preparedColumnValues[6]);
         resultProduct.setCategoryTree(preparedColumnValues[7]);
         resultProduct.setAverageProductRating(preparedColumnValues[8]);
         resultProduct.setProductUrl(preparedColumnValues[9]);
         resultProduct.setProductImageUrls(retrieveImageUrls(preparedColumnValues[10]));
         resultProduct.setBrand(preparedColumnValues[11]);
-        resultProduct.setTotalNumberReviews(preparedColumnValues[12].equals("") || !isNumeric(preparedColumnValues[12]) || preparedColumnValues[12] == null ? 0 : Integer.valueOf(preparedColumnValues[12]));
+        resultProduct.setTotalNumberReviews(preparedColumnValues[12].equals("") || !isNumeric(preparedColumnValues[12])  ? 0 : Integer.parseInt(preparedColumnValues[12]));
         resultProduct.setReviews(retrieveReviews(preparedColumnValues[13]));
         return resultProduct;
+    }
+
+    public Product getProductByUniqId(String uniqId) {
+        for (var product : products) {
+            if (product.getUniqId().equals(uniqId)) return product;
+        }
+        return null;
+    }
+
+    public List<Product> getProductsBySku(String sku) {
+        return products.stream().filter(p -> p.getSku().equals(sku)).toList();
     }
 
     private static boolean isNumeric(String strNum) {
@@ -89,8 +100,4 @@ public class ProductRepositoryImpl implements ProductRepository {
         return reviewList;
     }
 
-    @Override
-    public String test() {
-        return Integer.toString(rows.size());
-    }
 }

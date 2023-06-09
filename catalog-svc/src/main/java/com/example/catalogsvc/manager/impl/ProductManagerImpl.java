@@ -10,15 +10,12 @@ import java.util.List;
 public class ProductManagerImpl implements ProductManager {
     @Autowired
     private ProductRepository repository;
-    public String getRepoInfo() {
-        return repository.test();
+
+    public Product getProductByUniqId(String uniqId) {
+        return repository.getProductByUniqId(uniqId);
     }
 
-    public Product getProductByUniqId() {
-        return null;
-    }
-
-    public List<Product> getProductsBySku() {
-        return null;
+    public List<Product> getProductsBySku(String sku) {
+        return repository.getProductsBySku(sku);
     }
 }
