@@ -1,7 +1,10 @@
-package com.example.catalogsvc.model;
+package com.example.productsvc.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
     private String uniqId;
@@ -173,3 +176,4 @@ public class Product {
                 '}';
     }
 }
+

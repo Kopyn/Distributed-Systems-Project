@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class AvailabilityRepositoryImpl implements AvailabilityRepository {
 
-    private Map<String, Status> productAvailabilities;
+    private Map<String, Boolean> productAvailabilities;
 
     public AvailabilityRepositoryImpl(String filename) {
         productAvailabilities = new HashMap<>();
@@ -19,7 +19,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {
-                productAvailabilities.put(line.split("\t")[0], Math.random() > 0.5 ? Status.AVAILABLE : Status.UNAVAILABLE);
+                productAvailabilities.put(line.split("\t")[0], Math.random() > 0.5 ? true : false);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +27,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
     }
 
     @Override
-    public Status getProductStatus(String productUniqId) {
+    public boolean getProductStatus(String productUniqId) {
         return productAvailabilities.get(productUniqId);
     }
 }

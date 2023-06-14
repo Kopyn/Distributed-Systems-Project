@@ -11,7 +11,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     private AvailabilityRepository repository;
 
     @Override
-    public Status getProductStatus(String productUniqId) {
+    public boolean getProductStatus(String productUniqId) {
         return repository.getProductStatus(productUniqId);
     }
 }

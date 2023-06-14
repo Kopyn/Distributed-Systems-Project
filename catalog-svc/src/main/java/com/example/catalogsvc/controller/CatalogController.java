@@ -17,12 +17,12 @@ public class CatalogController {
     @Autowired
     private ProductManager manager;
 
-    @GetMapping("/Product/GetProductsByUniqId")
+    @GetMapping("/Product/GetProductByUniqId")
     public Product getProductByUniqId(@RequestParam String uniqId) {
         return manager.getProductByUniqId(uniqId);
     }
 
-    @GetMapping("/Products/GetProductsBySku")
+    @GetMapping("/Product/GetProductsBySku")
     public List<Product> getProductsBySku(@RequestParam String sku) {
         return manager.getProductsBySku(sku);
     }
