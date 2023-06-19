@@ -1,6 +1,7 @@
 package com.example.productsvc.ri.catalog;
 
 import com.example.productsvc.model.Product;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,9 @@ import java.util.List;
 
 public class CatalogServiceClientImpl implements CatalogServiceClient {
     private RestTemplate catalogClient = new RestTemplate();
-    private final String CATALOG_URL = "http://localhost:8083/Product";
+    @Value("${svc.catalog.url}")
+    private String CATALOG_URL;
+
     @Override
     public Product getProductDataById(String uniqId) {
         String encodedParam = UriComponentsBuilder.fromUriString(CATALOG_URL)
