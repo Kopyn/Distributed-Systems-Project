@@ -1,2 +1,8 @@
 repository.filepath: "../jcpenny - jcpenney_com-ecommerce_sample.tsv"
 server.port: 8082
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

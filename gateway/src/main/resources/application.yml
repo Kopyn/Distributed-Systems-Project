@@ -1,0 +1,20 @@
+server.port : 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product-svc
+          uri: http://localhost:8084
+          predicates:
+            - Path= /**
+
+#zuul:
+#  ignoredServices: '*'
+#  host:
+#    connect-timeout-millis: 20000
+#    socket-timeout-millis: 20000
+#  routes:
+#    product-service:
+#      url: http://localhost:8084
+#      path: /product/**
+#      stripPrefix: true
