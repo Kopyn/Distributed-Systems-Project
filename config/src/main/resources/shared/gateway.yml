@@ -1,0 +1,11 @@
+server.port : 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product-svc
+          uri: http://localhost:8084
+          predicates:
+            - Path= /product/**
+          filters:
+            - RewritePath=/product/(?<segment>.*), /$\{segment}
