@@ -4,8 +4,13 @@ spring:
     gateway:
       routes:
         - id: product-svc
-          uri: http://localhost:8084
+          uri: lb://PRODUCT-SVC
           predicates:
             - Path= /product/**
           filters:
             - RewritePath=/product/(?<segment>.*), /$\{segment}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

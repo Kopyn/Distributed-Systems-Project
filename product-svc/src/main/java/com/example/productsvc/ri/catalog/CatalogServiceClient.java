@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "catalog-svc", url = "http://localhost:8083/Product/")
+@FeignClient(value = "CATALOG-SVC")
 public interface CatalogServiceClient {
-    @RequestMapping(method = RequestMethod.GET, value = "GetProductByUniqId?uniqId={uniqId}")
+    @RequestMapping(method = RequestMethod.GET, value = "Product/GetProductByUniqId?uniqId={uniqId}")
     Product getProductDataById(@PathVariable("uniqId") String uniqId);
-    @RequestMapping(method = RequestMethod.GET, value = "GetProductsBySku?sku={sku}")
+    @RequestMapping(method = RequestMethod.GET, value = "Product/GetProductsBySku?sku={sku}")
     List<Product> getProductDataBySku(@PathVariable("sku") String sku);
 }
