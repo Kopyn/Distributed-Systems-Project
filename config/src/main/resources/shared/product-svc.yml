@@ -1,4 +1,16 @@
 server.port : 8084
+server:
+  error:
+    include-message: always
+
+catalog-svc:
+  ribbon:
+    listOfServers: localhost:8083
+
+inventory-svc:
+  ribbon:
+    listOfServers: localhost:8082
+
 eureka:
   instance:
     prefer-ip-address: true
